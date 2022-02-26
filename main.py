@@ -39,7 +39,7 @@ def game():
     while win == False and guesses > 0:   
         userWord = input("\033[1;39mGuess a word: ").upper()
 
-        if len(userWord) < 5:
+        if len(userWord) < 5 or len(userWord) > 5:
             print("Please enter a 5 letter word.")
             userWord = input("\033[1;39mGuess a word: ").upper()
 
@@ -172,11 +172,11 @@ def game():
     tries = 6 - guesses
 
     if userWord == word:
-        print("\033[1;32m" + "Congrats you guessed the word in " + str(tries) + " tries!")
+        print("\033[1;32m" + "Congrats you guessed the word in " + str(tries) + " tries!" + "\033[1;39m")
         quit
 
     if guesses == 0:
-        print("\033[1;31m" + "\nSorry you ran out of guesses. The word was " + word)
+        print("\033[1;31m" + "\nSorry you ran out of guesses. The word was " + word + "\033[1;39m")
         quit
 
 game()
