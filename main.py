@@ -1,3 +1,4 @@
+# termional cd: cd /Users/artiomcovali/Desktop/Python
 
 import random
 from words import words
@@ -11,6 +12,7 @@ aletter4 = ""
 aletter5 = ""
 
 history = []
+usedLetters = []
 
 
 # picks a 5 letter word
@@ -18,7 +20,7 @@ for x in range(len(words)):
     if len(words[x]) == 5:
         wordleWords.append(words[x])
 
-print("Welcome to Wordle!")
+print("Welcome to Wordle!")f
 
 print("""
 - - - - -
@@ -35,16 +37,22 @@ def game():
     word = random.choice(wordleWords)
     word = word.upper()
     userWord = ""
-
-    while win == False and guesses > 0:   
+    
+    while win == False and guesses > 0:  
+        usedLetters.sort() 
         userWord = input("\033[1;39mGuess a word: ").upper()
+
+            
 
         if len(userWord) < 5 or len(userWord) > 5:
             print("Please enter a 5 letter word.")
             userWord = input("\033[1;39mGuess a word: ").upper()
 
-        print(" ")
+        
         guesses = guesses - 1
+            
+
+        print(" ")
 
         # checks if first letter is in the word
         if userWord[0] == word[0]:
@@ -59,9 +67,12 @@ def game():
             aletter1 = "\033[1;33m" + word[4]
         else:
             aletter1 = "\033[1;37m" + userWord[0]
+            
+            if userWord[0] not in usedLetters:
+                usedLetters.append(userWord[0])
 
         history.append(aletter1)
-
+        usedLetters.sort()
 
         # checks if second letter is in the word
         if userWord[1] == word[1]:
@@ -76,8 +87,11 @@ def game():
             aletter2 = "\033[1;33m" + word[4]
         else:
             aletter2 = "\033[1;37m" + userWord[1]
+            if userWord[1] not in usedLetters:
+                usedLetters.append(userWord[1])
 
         history.append(aletter2)
+        usedLetters.sort()
 
         # checks if third letter is in the word
         if userWord[2] == word[2]:
@@ -92,8 +106,11 @@ def game():
             aletter3 = "\033[1;33m" + word[4]
         else:
             aletter3 = "\033[1;37m" + userWord[2]
+            if userWord[2] not in usedLetters:
+                usedLetters.append(userWord[2])
 
         history.append(aletter3)
+        usedLetters.sort()
 
         # checks if fourth letter is in the word
         if userWord[3] == word[3]:
@@ -108,8 +125,11 @@ def game():
             aletter4 = "\033[1;33m" + word[4]
         else:
             aletter4 = "\033[1;37m" + userWord[3]
+            if userWord[3] not in usedLetters:
+                usedLetters.append(userWord[3])
 
         history.append(aletter4)
+        usedLetters.sort()
         
         # checks if fifth letter is in the word
         if userWord[4] == word[4]:
@@ -124,8 +144,11 @@ def game():
             aletter5 = "\033[1;33m" + word[3]
         else:
             aletter5 = "\033[1;37m" + userWord[4]
+            if userWord[4] not in usedLetters:
+                usedLetters.append(userWord[4])
 
         history.append(aletter5)
+        usedLetters.sort()
 
 
         if guesses == 5:
@@ -159,8 +182,9 @@ def game():
                 "\n" + history[10] + ' ' + history[11] + ' ' + history[12] + ' ' + history[13] + ' ' + history[14] + 
                 "\n" + history[15] + ' ' + history[16] + ' ' + history[17] + ' ' + history[18] + ' ' + history[19] + 
                 "\n" + history[20] + ' ' + history[21] + ' ' + history[22] + ' ' + history[23] + ' ' + history[24] + 
-                "\n" + history[25] + ' ' + history[26] + ' ' + history[27] + ' ' + history[28] + ' ' + history[29])
+                "\n" + history[25] + ' ' + history[26] + ' ' + history[27] + ' ' + history[28] + ' ' + history[29] + "\n")
 
+        print("\033[1;39mWrong letters: " + str(usedLetters))
 
             
 
@@ -172,11 +196,11 @@ def game():
     tries = 6 - guesses
 
     if userWord == word:
-        print("\033[1;32m" + "Congrats you guessed the word in " + str(tries) + " tries!" + "\033[1;39m")
+        print("\033[1;32m" + "Congrats you guessed the word in " + str(tries) + " tries!")
         quit
 
     if guesses == 0:
-        print("\033[1;31m" + "\nSorry you ran out of guesses. The word was " + word + "\033[1;39m")
+        print("\033[1;31m" + "\nSorry you ran out of guesses. The word was " + word)
         quit
 
 game()
