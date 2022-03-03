@@ -20,7 +20,7 @@ for x in range(len(words)):
     if len(words[x]) == 5:
         wordleWords.append(words[x])
 
-print("Welcome to Wordle!")f
+print("Welcome to Wordle!")
 
 print("""
 - - - - -
