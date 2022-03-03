@@ -43,10 +43,10 @@ def game():
         userWord = input("\033[1;39mGuess a word: ").upper()
 
             
-
-        if len(userWord) < 5 or len(userWord) > 5:
-            print("Please enter a 5 letter word.")
-            userWord = input("\033[1;39mGuess a word: ").upper()
+        while len(userWord) != 5:
+            if len(userWord) < 5 or len(userWord) > 5:
+                print("Please enter a 5 letter word.")
+                userWord = input("\033[1;39mGuess a word: ").upper()
 
         
         guesses = guesses - 1
